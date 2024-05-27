@@ -10,22 +10,36 @@ const userSchema = new Schema(
 
     username: {
         type: String,
+        unique: true,
         required: true,
+        max_length: 50,
 
     },
     email: {
         type: String,
+        unique: true,
         required: true,
+        max_length: 50,
+        // match:  [/.+@.+\..+/], ??
 
     },
     thoughts: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: "Thought",
     },
-    friends: {
-        type: Array
-        // friendCount
-    }
-}
+    friends: [
+        {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+        }
+    ]
+},
+{
+    toJSON: {
+      virtuals: true,
+    },
+    id: false,
+  }
 );
 
 module.exports = userSchema;
