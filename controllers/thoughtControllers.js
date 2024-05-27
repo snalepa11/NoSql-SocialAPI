@@ -50,8 +50,7 @@ module.exports = {
     } catch (err) {
       res.status(500).json(err);
     }
-  } 
-},
+  },
   // Update a course
   async putThought(req, res) {
     try {
@@ -69,7 +68,8 @@ module.exports = {
     } catch (err) {
       res.status(500).json(err);
     }
-  };
+  }
+};
   
 
 
