@@ -11,8 +11,8 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Get a course
-  async getSingleCourse(req, res) {
+  // Get a thought
+  async getThoughtById(req, res) {
     try {
       const thought = await Thought.findOne({ _id: req.params.thoughtId })
       .populate('reactions');
@@ -26,7 +26,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Create a course
+  // Create a thought
   async postThought(req, res) {
     try {
       const thought = await Thought.create(req.body);
@@ -36,12 +36,12 @@ module.exports = {
       return res.status(500).json(err);
     }
   },
-  // Delete a course
+  // Delete a thought
   async deleteThought(req, res) {
     try {
       const thought = await Thought.findOneAndDelete({ _id: req.params.thoughtId });
 
-      if (!course) {
+      if (!thought) {
         return res.status(404).json({ message: 'No course with that ID' });
       }
 
@@ -51,10 +51,10 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Update a course
+  // Update a thought
   async putThought(req, res) {
     try {
-      const course = await Thought.findOneAndUpdate(
+      const thought = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
         { $set: req.body },
         { runValidators: true, new: true }
@@ -69,6 +69,9 @@ module.exports = {
       res.status(500).json(err);
     }
   }
+//   postReaction,
+//   deleteReaction,
+//   Add reactions functionality
 };
   
 
