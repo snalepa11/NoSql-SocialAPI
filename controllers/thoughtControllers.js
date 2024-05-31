@@ -98,7 +98,7 @@ async postReaction(req, res) {
       const thought = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
         { $pull: { reaction: { reactionId: req.params.reactionId } } },
-        { runValidators: true, new: true }
+        { new: true }
       );
 
       if (!thought) {
