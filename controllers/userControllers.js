@@ -87,7 +87,7 @@ module.exports = {
           res.status(500).json(err);
         }
       },
-      // Remove assignment from a student
+      // Remove a friend form a user
       async deleteFriend(req, res) {
         try {
           const user = await User.findOneAndUpdate(
@@ -113,6 +113,4 @@ module.exports = {
   
   
   
-//   addFriend,
-//   deleteFriend,
-// };
+

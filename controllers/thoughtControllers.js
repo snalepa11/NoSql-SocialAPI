@@ -44,7 +44,7 @@ module.exports = {
       const thought = await Thought.findOneAndRemove({ _id: req.params.thoughtId })
     
       if (!thought) {
-        return res.status(404).json({ message: 'No course with that ID' });
+        return res.status(404).json({ message: 'No thought with that ID' });
       }
 
     //   await Students.deleteMany({ _id: { : course.students } });
@@ -71,7 +71,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-// Add an assignment to a student
+// Add a reaction to a student
 async postReaction(req, res) {
     try {
       console.log(req.body);
@@ -92,7 +92,7 @@ async postReaction(req, res) {
       res.status(500).json(err);
     }
   },
-  // Remove assignment from a student
+  // Remove a reaction from a user
   async deleteReaction(req, res) {
     try {
       const thought = await Thought.findOneAndUpdate(
