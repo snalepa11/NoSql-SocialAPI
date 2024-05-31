@@ -54,7 +54,7 @@ module.exports = {
         },
     async deleteUser(req,res){
         try {
-            const user = await User.findOneAndDelete({ _id: req.params.userId });
+            const user = await User.findOneAndRemove({ _id: req.params.userId });
       
             if (!user) {
               return res.status(404).json({ message: 'No user with that ID' });
@@ -71,8 +71,9 @@ module.exports = {
           console.log(req.body);
           const user = await User.findOneAndUpdate(
             { _id: req.params.userId },
-            { $addToSet: { assignments: req.body } },
-            { runValidators: true, new: true }
+            { $addToSet: { friends: req.params.friendId } },
+            { new: true }
+            // runValidators: true,
           );
     
           if (!user) {

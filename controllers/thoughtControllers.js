@@ -77,8 +77,8 @@ async postReaction(req, res) {
       console.log(req.body);
       const thought = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
-        { $addToSet: { assignments: req.body } },
-        { runValidators: true, new: true }
+        { $addToSet: { reactions: req.body } },
+        { new: true }
       );
 
       if (!thought) {
