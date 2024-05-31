@@ -4,9 +4,9 @@ module.exports = {
   // get all Thoughts
   async getAllThought(req, res) {
     try {
-      const courses = await Thought.find()
+      const thought = await Thought.find()
       .populate('reactions');
-      res.json(Thought);
+      res.json(thought);
     } catch (err) {
       res.status(500).json(err);
     }
@@ -38,14 +38,16 @@ module.exports = {
   },
   // Delete a thought
   async deleteThought(req, res) {
+    console.log("hi");
     try {
-      const thought = await Thought.findOneAndDelete({ _id: req.params.thoughtId });
-
+      console.log(req.params.thoughtId);
+      const thought = await Thought.findOneAndRemove({ _id: req.params.thoughtId })
+    
       if (!thought) {
         return res.status(404).json({ message: 'No course with that ID' });
       }
 
-    //   await Students.deleteMany({ _id: { $in: course.students } });
+    //   await Students.deleteMany({ _id: { : course.students } });
     //   res.json({ message: 'Course and students deleted!' });
     } catch (err) {
       res.status(500).json(err);
